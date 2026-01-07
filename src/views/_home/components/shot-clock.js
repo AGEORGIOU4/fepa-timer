@@ -83,7 +83,17 @@ const ActionButtons = ({ resetShotClock, toggleShotClock, restartShotClock, sele
 const ExtensionButtons = ({ handleP1Extension, handleP2Extension, p1ExtensionUsed, p2ExtensionUsed }) => {
   return (
     <>
-      <CRow style={{ textAlign: 'center', marginTop: "40px" }}>
+      <CRow
+        className="justify-content-center"
+        style={{
+          padding: "10px",
+          position: "fixed",
+          top: 20,
+          left: 0,
+          right: 0,
+          textAlign: "center"
+        }}
+      >
         <CCol xs={6}>
           <CButton
             onClick={handleP1Extension}
@@ -289,65 +299,58 @@ export const CShotClock = () => {
 
   return (
     <>
-
+      <ExtensionButtons handleP1Extension={handleP1Extension} handleP2Extension={handleP2Extension} p1ExtensionUsed={p1ExtensionUsed} p2ExtensionUsed={p2ExtensionUsed} />
       <div className="text-center bold-text"
         style={{
           display: "flex",
-          flexDirection: "column",   // ✅ KEY CHANGE
+          justifyContent: "center",
           alignItems: "center",
-          justifyContent: "flex-start",
-          height: "100svh",
-          width: "100vw",
-          overflow: "hidden",
-          paddingTop: "20px",
+          height: "90svh", // Full viewport height
 
         }}>
-
-        <ExtensionButtons handleP1Extension={handleP1Extension} handleP2Extension={handleP2Extension} p1ExtensionUsed={p1ExtensionUsed} p2ExtensionUsed={p2ExtensionUsed} />
-        <CRow>
-          <svg
-            width="320"
-            height="320"
-            onClick={handleCircleClick}
-            style={{
-              cursor: "pointer",
-              margin: "0 0px",
-              transition: "transform 0.2s ease",
-              transform: isRunning ? "scale(0.95)" : "scale(1)",
-            }}
+        <svg
+          width="320"
+          height="320"
+          onClick={handleCircleClick}
+          style={{
+            cursor: "pointer",
+            margin: "0 20px",
+            transition: "transform 0.2s ease",
+            transform: isRunning ? "scale(0.95)" : "scale(1)",
+          }}
+        >
+          <circle
+            cx="160" // Updated for new dimensions
+            cy="160"
+            r="145" // Updated radius for the new size
+            stroke="lightgray"
+            strokeWidth="14" // Adjusted stroke width proportionally
+            fill="none"
+          />
+          <circle
+            cx="160"
+            cy="160"
+            r="145"
+            stroke={getStrokeColor(shotClock)}
+            strokeWidth="14"
+            fill="dark"
+            strokeDasharray={circumference} // Ensure circumference matches radius
+            strokeDashoffset={((60 - shotClock) / 60) * circumference}
+            transform="rotate(-90 160 160)" // Updated rotation pivot
+          />
+          <text
+            x="50%"
+            y="50%"
+            textAnchor="middle"
+            dy=".3em"
+            fontSize={shotClock < 10 ? "200" : "130"} // Adjusted for slightly larger size
+            fill={isRed ? "#ef376e" : "white"} // Set fill color based on state
           >
-            <circle
-              cx="160" // Updated for new dimensions
-              cy="160"
-              r="145" // Updated radius for the new size
-              stroke="lightgray"
-              strokeWidth="14" // Adjusted stroke width proportionally
-              fill="none"
-            />
-            <circle
-              cx="160"
-              cy="160"
-              r="145"
-              stroke={getStrokeColor(shotClock)}
-              strokeWidth="14"
-              fill="dark"
-              strokeDasharray={circumference} // Ensure circumference matches radius
-              strokeDashoffset={((60 - shotClock) / 60) * circumference}
-              transform="rotate(-90 160 160)" // Updated rotation pivot
-            />
-            <text
-              x="50%"
-              y="50%"
-              textAnchor="middle"
-              dy=".3em"
-              fontSize={shotClock < 10 ? "200" : "130"} // Adjusted for slightly larger size
-              fill={isRed ? "#ef376e" : "white"} // Set fill color based on state
-            >
-              {shotClock}
-            </text>
-          </svg>
+            {shotClock}
+          </text>
+        </svg>
 
-        </CRow>
+
       </div>
 
 
