@@ -1,5 +1,5 @@
 import React, { Suspense, useEffect } from 'react'
-import { HashRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 
 import { CSpinner, useColorModes } from '@coreui/react-pro'
@@ -16,7 +16,7 @@ const Home = React.lazy(() => import('./views/_home/index'))
 
 const App = () => {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <Suspense
         fallback={
           <div className="pt-3 text-center">
@@ -25,11 +25,11 @@ const App = () => {
         }
       >
         <Routes>
-          <Route exact path="/home" name="Home Page" element={<Home />} />
+          <Route exact path="/" name="Home Page" element={<Home />} />
           <Route path="*" name="Home" element={<DefaultLayout />} />
         </Routes>
       </Suspense>
-    </HashRouter>
+    </BrowserRouter>
   )
 }
 
