@@ -173,7 +173,7 @@ export const CShotClockLandscape = () => {
   const toggleShotClock = async () => {
     await unlockAudio();   // <-- important
 
-    stopBeep();
+    pauseBeep();
 
     if (isRunning) {
       stopShotClock(); // Stop the timer
