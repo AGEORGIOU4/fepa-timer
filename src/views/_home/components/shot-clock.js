@@ -152,6 +152,26 @@ export const CShotClock = () => {
   };
 
 
+  const audioUnlockedRef = useRef(false);
+
+  const unlockAudio = async () => {
+    if (audioUnlockedRef.current) return;
+
+    const a = beepSoundRef.current;
+    try {
+      a.muted = true;           // or a.volume = 0;
+      a.currentTime = 0;
+      await a.play();           // must be during user gesture
+      a.pause();
+      a.currentTime = 0;
+      a.muted = false;          // restore
+      audioUnlockedRef.current = true;
+    } catch (e) {
+      // If it fails, user likely has silent mode / no gesture / not allowed yet.
+      // Keep false; next tap will try again.
+    }
+  };
+
   const playBeepIfNeeded = (time) => {
     if (time <= 5) {
       beepSoundRef.current.play(); // Play the beep sound
@@ -192,8 +212,11 @@ export const CShotClock = () => {
     resetShotClock(time); // Reset to the selected time
   };
 
-  const toggleShotClock = () => {
-    pauseBeep(); // Stop the beep sound if it's playing
+  const toggleShotClock = async () => {
+    await unlockAudio();   // <-- important
+
+    stopBeep();
+
     if (isRunning) {
       stopShotClock(); // Stop the timer
     } else {
