@@ -17,16 +17,59 @@ const TimerButton = ({ handleTimeButtonClick, time, selectedTime }) => {
   )
 }
 
+const ExtensionButtons = ({ handleP1Extension, handleP2Extension, p1ExtensionUsed, p2ExtensionUsed }) => {
+  return (
+    <>
+      <CRow
+        className="justify-content-center"
+        style={{
+          padding: "20px",
+
+          textAlign: "center",
+          zIndex: 1000
+        }}
+      >
+        <CCol xs={6}>
+          <CButton
+            onClick={handleP1Extension}
+            disabled={p1ExtensionUsed} // Disable after use
+            style={{
+              margin: "30px auto",
+              width: "100px",
+              height: "60px",
+              color: "white",
+              background: p1ExtensionUsed ? "#cccccc" : "#f97316", // Disabled color
+            }}
+          >
+            P1 Extension
+          </CButton>
+        </CCol>
+        <CCol xs={6}>
+          <CButton
+            onClick={handleP2Extension}
+            disabled={p2ExtensionUsed} // Disable after use
+            style={{
+              margin: "30px auto",
+              width: "100px",
+              height: "60px",
+              color: "white",
+              background: p2ExtensionUsed ? "#cccccc" : "#f97316", // Disabled color
+            }}
+          >
+            P2 Extension
+          </CButton>
+        </CCol>
+      </CRow>
+    </>
+  )
+}
+
 const ActionButtons = ({ resetShotClock, toggleShotClock, restartShotClock, selectedTime, isRunning }) => {
   return (
     <CRow
       className="justify-content-center"
       style={{
-        padding: "10px",
-        position: "fixed",
-        bottom: 20,
-        left: 0,
-        right: 0,
+        padding: "50px 20px",
       }}
     >
       <CCol xs={4} className="text-center">
@@ -80,54 +123,7 @@ const ActionButtons = ({ resetShotClock, toggleShotClock, restartShotClock, sele
   );
 };
 
-const ExtensionButtons = ({ handleP1Extension, handleP2Extension, p1ExtensionUsed, p2ExtensionUsed }) => {
-  return (
-    <>
-      <CRow
-        className="justify-content-center"
-        style={{
-          padding: "10px",
-          position: "fixed",
-          top: 20,
-          left: 0,
-          right: 0,
-          textAlign: "center"
-        }}
-      >
-        <CCol xs={6}>
-          <CButton
-            onClick={handleP1Extension}
-            disabled={p1ExtensionUsed} // Disable after use
-            style={{
-              margin: "30px auto",
-              width: "100px",
-              height: "60px",
-              color: "white",
-              background: p1ExtensionUsed ? "#cccccc" : "#f97316", // Disabled color
-            }}
-          >
-            P1 Extension
-          </CButton>
-        </CCol>
-        <CCol xs={6}>
-          <CButton
-            onClick={handleP2Extension}
-            disabled={p2ExtensionUsed} // Disable after use
-            style={{
-              margin: "30px auto",
-              width: "100px",
-              height: "60px",
-              color: "white",
-              background: p2ExtensionUsed ? "#cccccc" : "#f97316", // Disabled color
-            }}
-          >
-            P2 Extension
-          </CButton>
-        </CCol>
-      </CRow>
-    </>
-  )
-}
+
 
 export const CShotClock = () => {
   const times = [60, 45, 30, 15];
@@ -299,62 +295,64 @@ export const CShotClock = () => {
 
   return (
     <>
-      <ExtensionButtons handleP1Extension={handleP1Extension} handleP2Extension={handleP2Extension} p1ExtensionUsed={p1ExtensionUsed} p2ExtensionUsed={p2ExtensionUsed} />
-      <div className="text-center bold-text"
-        style={{
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          height: "90svh", // Full viewport height
-
-        }}>
-        <svg
-          width="320"
-          height="320"
-          onClick={handleCircleClick}
-          style={{
-            cursor: "pointer",
-            margin: "0 20px",
-            transition: "transform 0.2s ease",
-            transform: isRunning ? "scale(0.95)" : "scale(1)",
-          }}
-        >
-          <circle
-            cx="160" // Updated for new dimensions
-            cy="160"
-            r="145" // Updated radius for the new size
-            stroke="lightgray"
-            strokeWidth="14" // Adjusted stroke width proportionally
-            fill="none"
-          />
-          <circle
-            cx="160"
-            cy="160"
-            r="145"
-            stroke={getStrokeColor(shotClock)}
-            strokeWidth="14"
-            fill="dark"
-            strokeDasharray={circumference} // Ensure circumference matches radius
-            strokeDashoffset={((60 - shotClock) / 60) * circumference}
-            transform="rotate(-90 160 160)" // Updated rotation pivot
-          />
-          <text
-            x="50%"
-            y="50%"
-            textAnchor="middle"
-            dy=".3em"
-            fontSize={shotClock < 10 ? "200" : "130"} // Adjusted for slightly larger size
-            fill={isRed ? "#ef376e" : "white"} // Set fill color based on state
-          >
-            {shotClock}
-          </text>
-        </svg>
+      <div style={{ height: "100svh" }}>
+        <ExtensionButtons handleP1Extension={handleP1Extension} handleP2Extension={handleP2Extension} p1ExtensionUsed={p1ExtensionUsed} p2ExtensionUsed={p2ExtensionUsed} />
+        <CRow>
+          <div className="text-center bold-text"
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
 
 
-      </div>
+            }}>
+            <svg
+              width="320"
+              height="320"
+              onClick={handleCircleClick}
+              style={{
+                cursor: "pointer",
+                margin: "0 20px",
+                transition: "transform 0.2s ease",
+                transform: isRunning ? "scale(0.95)" : "scale(1)",
+              }}
+            >
+              <circle
+                cx="160" // Updated for new dimensions
+                cy="160"
+                r="145" // Updated radius for the new size
+                stroke="lightgray"
+                strokeWidth="14" // Adjusted stroke width proportionally
+                fill="none"
+              />
+              <circle
+                cx="160"
+                cy="160"
+                r="145"
+                stroke={getStrokeColor(shotClock)}
+                strokeWidth="14"
+                fill="dark"
+                strokeDasharray={circumference} // Ensure circumference matches radius
+                strokeDashoffset={((60 - shotClock) / 60) * circumference}
+                transform="rotate(-90 160 160)" // Updated rotation pivot
+              />
+              <text
+                x="50%"
+                y="50%"
+                textAnchor="middle"
+                dy=".3em"
+                fontSize={shotClock < 10 ? "200" : "130"} // Adjusted for slightly larger size
+                fill={isRed ? "#ef376e" : "white"} // Set fill color based on state
+              >
+                {shotClock}
+              </text>
+            </svg>
 
 
-      {/* <CRow className="justify-content-center" style={{ padding: "10px" }}>
+          </div>
+
+        </CRow>
+        {/* <CRow className="justify-content-center" style={{ padding: "10px" }}>
         {times?.map((time, index) => {
           return (
             <TimerButton
@@ -369,8 +367,10 @@ export const CShotClock = () => {
 
 
 
-      <ActionButtons resetShotClock={resetShotClock} toggleShotClock={toggleShotClock} restartShotClock={restartShotClock}
-        selectedTime={selectedTime} isRunning={isRunning} />
+        <ActionButtons resetShotClock={resetShotClock} toggleShotClock={toggleShotClock} restartShotClock={restartShotClock}
+          selectedTime={selectedTime} isRunning={isRunning} />
+
+      </div>
     </>
 
   );
