@@ -92,7 +92,7 @@ export const CShotClockLandscape = () => {
   const radius = 126;
   const circumference = 2 * Math.PI * radius;
 
-  const beepSoundRef = useRef(new Audio('/5seconds.mp4'));
+  const beepSoundRef = useRef(new Audio('/6seconds.wav'));
 
   useEffect(() => {
     beepSoundRef.current.preload = "auto"; // Preload audio for faster playback
@@ -103,7 +103,7 @@ export const CShotClockLandscape = () => {
   const getStrokeColor = (time) => {
     if (time > 15) {
       return "#51cc8a"; // Green for 45s-60s
-    } else if (time > 9) {
+    } else if (time > 5) {
       return "#ffc107"; // Green for 30s-45s
     } else {
       return "#ef376e"; // Red for 0s-15s
@@ -214,7 +214,7 @@ export const CShotClockLandscape = () => {
   const [isRed, setIsRed] = useState(false); // State to toggle between colors
 
   useEffect(() => {
-    if (shotClock < 10) {
+    if (shotClock <= 5) {
       const interval = setInterval(() => {
         setIsRed((prev) => !prev); // Toggle the color
       }, 200); // Change color every second
@@ -237,7 +237,7 @@ export const CShotClockLandscape = () => {
                 width: "100px",
                 height: "60px",
                 color: "white",
-                background: p1ExtensionUsed ? "#cccccc" : "#673AB7", // Disabled color
+                background: p1ExtensionUsed ? "#cccccc" : "#f97316", // Disabled color
               }}
             >
               P1 Extension
@@ -296,7 +296,7 @@ export const CShotClockLandscape = () => {
                 width: "100px",
                 height: "60px",
                 color: "white",
-                background: p2ExtensionUsed ? "#cccccc" : "#673AB7", // Disabled color
+                background: p2ExtensionUsed ? "#cccccc" : "#f97316", // Disabled color
               }}
             >
               P2 Extension
