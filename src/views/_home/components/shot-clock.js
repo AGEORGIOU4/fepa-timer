@@ -344,7 +344,7 @@ export const CShotClock = () => {
       </div>
 
 
-      <CRow className="justify-content-center" style={{ padding: "10px" }}>
+      {/* <CRow className="justify-content-center" style={{ padding: "10px" }}>
         {times?.map((time, index) => {
           return (
             <TimerButton
@@ -355,7 +355,7 @@ export const CShotClock = () => {
             />
           );
         })}
-      </CRow>
+      </CRow> */}
 
 
 

@@ -327,13 +327,14 @@ export const CShotClockLandscape = () => {
           </CCol>
 
 
-          <div style={{ width: "100%", textAlign: "center" }}>
+          {/* <div style={{ width: "100%", textAlign: "center" }}>
             {times?.map((time, index) => {
               return (
                 <TimerButton key={time} handleTimeButtonClick={handleTimeButtonClick} time={time} selectedTime={selectedTime} />
               )
             })}
-          </div>
+          </div> */}
+
         </CRow>
       </div>
 
