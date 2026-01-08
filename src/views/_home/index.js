@@ -39,7 +39,8 @@ const Home = () => {
         }}
       >
 
-        {isLandscape ? <CShotClockLandscape /> : <CShotClock />}
+        {/* {isLandscape ? <CShotClockLandscape /> : <CShotClock />} */}
+        {isLandscape ? <p>Only available on mobile devices</p> : <CShotClock />}
         <PWAPrompt promptOnVisit={1} timesToShow={3} delay={1500} copyClosePrompt="Close" />
         <InstallPWAButton />
       </div>
