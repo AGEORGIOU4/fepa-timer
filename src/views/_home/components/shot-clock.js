@@ -32,6 +32,7 @@ const ExtensionButtons = ({ handleP1Extension, handleP2Extension, p1ExtensionUse
       >
         <CCol xs={6}>
           <CButton
+            className="action-btn"
             onClick={handleP1Extension}
             disabled={p1ExtensionUsed} // Disable after use
             style={{
@@ -48,6 +49,7 @@ const ExtensionButtons = ({ handleP1Extension, handleP2Extension, p1ExtensionUse
         </CCol>
         <CCol xs={6}>
           <CButton
+            className="action-btn"
             onClick={handleP2Extension}
             disabled={p2ExtensionUsed} // Disable after use
             style={{
@@ -77,6 +79,7 @@ const ActionButtons = ({ resetShotClock, toggleShotClock, restartShotClock, sele
     >
       <CCol xs={4} className="text-center">
         <CButton
+          className="action-btn"
           onClick={() => resetShotClock(selectedTime)}
           style={{
             color: "white",
@@ -93,6 +96,7 @@ const ActionButtons = ({ resetShotClock, toggleShotClock, restartShotClock, sele
 
       <CCol xs={4} className="text-center">
         <CButton
+          className="action-btn"
           onClick={toggleShotClock}
           style={{
             color: "white",
@@ -110,6 +114,7 @@ const ActionButtons = ({ resetShotClock, toggleShotClock, restartShotClock, sele
 
       <CCol xs={4} className="text-center">
         <CButton
+          className="action-btn"
           disabled={!isRunning}
           onClick={restartShotClock}
           style={{

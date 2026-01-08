@@ -24,6 +24,7 @@ const ActionButtons = ({ resetShotClock, toggleShotClock, restartShotClock, sele
   return (
     <>
       <CButton
+        className="action-btn"
         onClick={() => resetShotClock(selectedTime)}
         style={{
           position: "absolute",
@@ -41,6 +42,7 @@ const ActionButtons = ({ resetShotClock, toggleShotClock, restartShotClock, sele
       </CButton>
 
       <CButton
+        className="action-btn"
         onClick={toggleShotClock} // Toggle start/pause
         style={{
           position: "absolute",
@@ -59,6 +61,7 @@ const ActionButtons = ({ resetShotClock, toggleShotClock, restartShotClock, sele
       </CButton>
 
       <CButton
+        className="action-btn"
         disabled={!isRunning ? true : false}
         onClick={restartShotClock}
         style={{
@@ -257,6 +260,7 @@ export const CShotClockLandscape = () => {
         <CRow className="text-center bold-text">
           <CCol sm={3} style={{ textAlign: "left" }}>
             <CButton
+              className="action-btn"
               onClick={handleP1Extension}
               disabled={p1ExtensionUsed} // Disable after use
               style={{
@@ -317,6 +321,7 @@ export const CShotClockLandscape = () => {
           </CCol>
           <CCol sm={3} style={{ textAlign: "right" }}>
             <CButton
+              className="action-btn"
               onClick={handleP2Extension}
               disabled={p2ExtensionUsed} // Disable after use
               style={{
