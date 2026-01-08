@@ -50,9 +50,16 @@
   font-weight: bold;
 }
 
+// .gradient-background {
+//   //background: linear-gradient(135deg, #000000, #383838);
+//   background: #fff;
+//   color: white;
+// }
+
 .gradient-background {
-  background: linear-gradient(135deg, #000000, #383838);
-  color: white;
+  background: url("/bg.png") no-repeat center center;
+  background-size: cover;
+  color: black;
 }
 
 .timer-button {

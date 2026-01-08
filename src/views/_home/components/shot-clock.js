@@ -9,7 +9,8 @@ const TimerButton = ({ handleTimeButtonClick, time, selectedTime }) => {
       style={{
         margin: "0 10px",
         backgroundColor: selectedTime === time ? "#777777" : "", selectedTime,
-        scale: selectedTime === time ? "1.15" : "1"
+        scale: selectedTime === time ? "1.15" : "1",
+        fontWeight: "900"
       }}
     >
       {time}s
@@ -39,6 +40,7 @@ const ExtensionButtons = ({ handleP1Extension, handleP2Extension, p1ExtensionUse
               height: "60px",
               color: "white",
               background: p1ExtensionUsed ? "#cccccc" : "#f97316", // Disabled color
+              fontWeight: "900"
             }}
           >
             P1 Extension
@@ -54,6 +56,7 @@ const ExtensionButtons = ({ handleP1Extension, handleP2Extension, p1ExtensionUse
               height: "60px",
               color: "white",
               background: p2ExtensionUsed ? "#cccccc" : "#f97316", // Disabled color
+              fontWeight: "900"
             }}
           >
             P2 Extension
@@ -69,7 +72,7 @@ const ActionButtons = ({ resetShotClock, toggleShotClock, restartShotClock, sele
     <CRow
       className="justify-content-center"
       style={{
-        padding: "50px 20px",
+        padding: "20px",
       }}
     >
       <CCol xs={4} className="text-center">
@@ -80,7 +83,8 @@ const ActionButtons = ({ resetShotClock, toggleShotClock, restartShotClock, sele
             width: "100px", // Make the button take up the full column width
             height: "100px",
             background: "#ef376e",
-            borderRadius: "100%"
+            borderRadius: "100%",
+            fontWeight: "900"
           }}
         >
           Reset
@@ -97,6 +101,7 @@ const ActionButtons = ({ resetShotClock, toggleShotClock, restartShotClock, sele
             background: isRunning ? "#ffc107" : "#51cc8a",
             borderRadius: "100%",
             scale: isRunning ? "0.9" : "1",
+            fontWeight: "900"
           }}
         >
           {isRunning ? "Pause" : "Start"}
@@ -112,7 +117,8 @@ const ActionButtons = ({ resetShotClock, toggleShotClock, restartShotClock, sele
             width: "100px", // Make the button take up the full column width
             height: "100px",
             background: "#007bff",
-            borderRadius: "100%"
+            borderRadius: "100%",
+            fontWeight: "900"
           }}
         >
           Restart
@@ -296,7 +302,27 @@ export const CShotClock = () => {
   return (
     <>
       <div style={{ height: "100svh" }}>
-        <ExtensionButtons handleP1Extension={handleP1Extension} handleP2Extension={handleP2Extension} p1ExtensionUsed={p1ExtensionUsed} p2ExtensionUsed={p2ExtensionUsed} />
+        <CRow className="justify-content-center"
+
+          style={{
+            padding: "20px 10px",
+
+            textAlign: "center",
+            zIndex: 1000
+          }}
+        >
+          {times?.map((time, index) => {
+            return (
+              <TimerButton
+                key={time}
+                handleTimeButtonClick={handleTimeButtonClick}
+                time={time}
+                selectedTime={selectedTime}
+              />
+            );
+          })}
+        </CRow>
+
         <CRow>
           <div className="text-center bold-text"
             style={{
@@ -331,7 +357,7 @@ export const CShotClock = () => {
                 r="145"
                 stroke={getStrokeColor(shotClock)}
                 strokeWidth="14"
-                fill="dark"
+                fill="white"
                 strokeDasharray={circumference} // Ensure circumference matches radius
                 strokeDashoffset={((60 - shotClock) / 60) * circumference}
                 transform="rotate(-90 160 160)" // Updated rotation pivot
@@ -342,7 +368,7 @@ export const CShotClock = () => {
                 textAnchor="middle"
                 dy=".3em"
                 fontSize={shotClock < 10 ? "200" : "130"} // Adjusted for slightly larger size
-                fill={isRed ? "#ef376e" : "white"} // Set fill color based on state
+                fill={isRed ? "#ef376e" : "black"} // Set fill color based on state
               >
                 {shotClock}
               </text>
@@ -352,20 +378,9 @@ export const CShotClock = () => {
           </div>
 
         </CRow>
-        {/* <CRow className="justify-content-center" style={{ padding: "10px" }}>
-        {times?.map((time, index) => {
-          return (
-            <TimerButton
-              key={time}
-              handleTimeButtonClick={handleTimeButtonClick}
-              time={time}
-              selectedTime={selectedTime}
-            />
-          );
-        })}
-      </CRow> */}
 
 
+        <ExtensionButtons handleP1Extension={handleP1Extension} handleP2Extension={handleP2Extension} p1ExtensionUsed={p1ExtensionUsed} p2ExtensionUsed={p2ExtensionUsed} />
 
         <ActionButtons resetShotClock={resetShotClock} toggleShotClock={toggleShotClock} restartShotClock={restartShotClock}
           selectedTime={selectedTime} isRunning={isRunning} />

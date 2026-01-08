@@ -11,7 +11,8 @@ const TimerButton = ({ handleTimeButtonClick, time, selectedTime }) => {
         height: "50px",
         margin: "0 10px",
         backgroundColor: selectedTime === time ? "#777777" : "", selectedTime,
-        scale: selectedTime === time ? "1.15" : "1"
+        scale: selectedTime === time ? "1.15" : "1",
+        fontWeight: "900"
       }}
     >
       {time}s
@@ -32,7 +33,8 @@ const ActionButtons = ({ resetShotClock, toggleShotClock, restartShotClock, sele
           width: "100px", // Make the button take up the full column width
           height: "100px",
           background: "#ef376e",
-          borderRadius: "100%"
+          borderRadius: "100%",
+          fontWeight: "900"
         }}
       >
         Reset
@@ -50,6 +52,7 @@ const ActionButtons = ({ resetShotClock, toggleShotClock, restartShotClock, sele
           background: isRunning ? "#ffc107" : "#51cc8a",
           borderRadius: "100%",
           scale: isRunning ? "0.9" : "1",
+          fontWeight: "900"
         }}
       >
         {isRunning ? "Pause" : "Start"}
@@ -66,7 +69,8 @@ const ActionButtons = ({ resetShotClock, toggleShotClock, restartShotClock, sele
           width: "100px", // Make the button take up the full column width
           height: "100px",
           background: "#007bff",
-          borderRadius: "100%"
+          borderRadius: "100%",
+          fontWeight: "900"
         }}
       >
         Restart
@@ -261,6 +265,7 @@ export const CShotClockLandscape = () => {
                 height: "60px",
                 color: "white",
                 background: p1ExtensionUsed ? "#cccccc" : "#f97316", // Disabled color
+                fontWeight: "900"
               }}
             >
               P1 Extension
@@ -292,7 +297,7 @@ export const CShotClockLandscape = () => {
                 r="126" // Adjusted radius
                 stroke={getStrokeColor(shotClock)}
                 strokeWidth="12" // Adjusted stroke width
-                fill="dark"
+                fill="white"
                 strokeDasharray={circumference} // Ensure this is updated if circumference depends on radius
                 strokeDashoffset={((60 - shotClock) / 60) * circumference}
                 transform="rotate(-90 140 140)" // Adjusted rotation pivot for new center
@@ -303,7 +308,7 @@ export const CShotClockLandscape = () => {
                 textAnchor="middle"
                 dy=".3em"
                 fontSize={shotClock < 10 ? "180" : "110"} // Adjusted for slightly larger size
-                fill={isRed ? "#ef376e" : "white"} // Set fill color based on state
+                fill={isRed ? "#ef376e" : "black"} // Set fill color based on state
               >
                 {shotClock}
               </text>
@@ -320,6 +325,7 @@ export const CShotClockLandscape = () => {
                 height: "60px",
                 color: "white",
                 background: p2ExtensionUsed ? "#cccccc" : "#f97316", // Disabled color
+                fontWeight: "900"
               }}
             >
               P2 Extension
@@ -327,13 +333,13 @@ export const CShotClockLandscape = () => {
           </CCol>
 
 
-          {/* <div style={{ width: "100%", textAlign: "center" }}>
+          <div style={{ width: "100%", textAlign: "center" }}>
             {times?.map((time, index) => {
               return (
                 <TimerButton key={time} handleTimeButtonClick={handleTimeButtonClick} time={time} selectedTime={selectedTime} />
               )
             })}
-          </div> */}
+          </div>
 
         </CRow>
       </div>
