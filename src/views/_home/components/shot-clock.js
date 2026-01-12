@@ -7,13 +7,12 @@ const TimerButton = ({ handleTimeButtonClick, time, selectedTime }) => {
       className="timer-button"
       onClick={() => handleTimeButtonClick(time)}
       style={{
-        margin: "0 10px",
+        margin: "0 20px",
         backgroundColor: selectedTime === time ? "#777777" : "", selectedTime,
         scale: selectedTime === time ? "1.15" : "1",
-        fontWeight: "900"
       }}
     >
-      {time}s
+      {time}
     </CButton>
   )
 }
@@ -310,7 +309,7 @@ export const CShotClock = () => {
         <CRow className="justify-content-center"
 
           style={{
-            padding: "20px 10px",
+            padding: "10px",
 
             textAlign: "center",
             zIndex: 1000
